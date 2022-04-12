@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title> Arts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<style> 
+    body {
+        font-family: "Lucida Console", "Courier New", monospace;
+        text-align: center;
+        padding-top: 15%;
+        width: 50%;
+        margin: auto;
+        padding-right: 20px;
+        font-size: xx-large;
+        background-image: url('img/brickwall.png');
+        background-size: 100%;
+    }
+    
+    h1 {
+	    font-family: "Cursive", Brush Script MT;
+	    text-align:center;
+	    margin-bottom:150px;
+	    font-size:200px;
+	    color:white;
+	    text-shadow:  0 0 7px rgba(255, 170, 0),
+				      0 0 10px rgba(255, 170, 0),
+				      0 0 19px rgba(255, 170, 0),
+				      0 0 40px rgba(255, 193, 69),
+				      0 0 82px rgba(255, 193, 69),
+				      0 0 92px rgba(255, 193, 69),
+				      0 0 102px rgba(255, 245, 130),
+				      0 0 151px rgba(255, 245, 130);
+    }
+    
+    table {
+    border: solid 25px;
+    border-color: black;
+    }
+  </style>
+</head>
+<body>
+	<h1>Arts</h1>
+	<table class="table table-hover" style="background: rgb(255, 253, 250)">
+		<thead>
+		<tr>
+			<th id="name">Name </th>
+			<th>Artist</th>
+			<th>Year</th>
+			<th>Description</th>
+		</tr>
+		</thead>
+		<tr th:each="art : ${arts}">
+			<td th:text="${art.name}">Name</td>
+			<td th:text="${art.artist.name}">Artist</td>
+			<td th:text="${art.year}">Year</td>
+			<td th:text="${art.description}">Description</td>
+		</tr>
+	</table>
+</body>
+</html>
