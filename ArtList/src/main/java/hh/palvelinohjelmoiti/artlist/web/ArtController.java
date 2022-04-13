@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import hh.palvelinohjelmoiti.artlist.domain.Art;
 import hh.palvelinohjelmoiti.artlist.domain.ArtRepository;
-import hh.palvelinohjelmoiti.artlist.domain.ArtistRepository;
+import hh.palvelinohjelmoiti.artlist.domain.Artist;
+import hh.palvelinohjelmoiti.artlist.domain.TypeRepository;
 
 @Controller
 public class ArtController {
@@ -19,7 +20,7 @@ public class ArtController {
 	private ArtRepository repository;
 
 	@Autowired
-	private ArtistRepository arepository;
+	private TypeRepository trepository;
 
 	@RequestMapping(value = { "/", "/artlist" })
 	public String artList(Model model) {
@@ -36,9 +37,9 @@ public class ArtController {
 	}
 
 	@RequestMapping(value = "/saveart", method = RequestMethod.POST)
-	public String saveArt(@ModelAttribute Art art) {
+	public String saveArt(@ModelAttribute Art art, @ModelAttribute Artist artist) {
 		repository.save(art);
-		return "redirect:../arts";
+		return "redirect:../artlist";
 	}
 
 	// Poisto
@@ -52,7 +53,7 @@ public class ArtController {
 	public String addArt(Model model) {
 
 		model.addAttribute("art", new Art());
-		model.addAttribute("artist", arepository.findAll());
+		model.addAttribute("types", trepository.findAll());
 		return "addart";
 	}
 

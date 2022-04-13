@@ -34,55 +34,68 @@
 				      0 0 151px rgba(255, 245, 130);
     }
     
-    table {
-    border: solid 25px;
-    border-color: black;
-    }
+   input {
+		  width: 800px;
+		  padding: 12px 20px;
+		  margin: 8px 0;
+		  box-sizing: border-box;
+		  float: right;
+		  margin-right: 30px;
+	}
+	
+	form {
+	background-color: white;
+	  border: solid 25px;
+    border-color:silver;
+    height: 700px;
+	}
+	
+	label {
+	float:left;
+	margin-left: 30px;
+	}
+	
+	.name {
+	margin-top: 60px;
+	}
+	
+	.save {
+	margin-top: 30px;
+	width:400px;
+	margin-right: 240px;
+	}
+	
     
-.button-47 {
-  align-items: center;
-  background: #FFFFFF;
-  border: 0 solid #E2E8F0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  box-sizing: border-box;
-  color: #1A202C;
-  display: inline-flex;
-  font-family: Inter, sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  height: 56px;
-  justify-content: center;
-  line-height: 24px;
-  overflow-wrap: break-word;
-  padding: 24px;
-  text-decoration: none;
-  width: auto;
-  border-radius: 8px;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin-top: 25%;
-}
   </style>
 </head>
 <body>
 	<h1>Add Art</h1>
 	<div>
 		<form th:object="${art}" th:action="@{save}" action="#" method="post">
-		  	<label for="title">Name</label>
-			<input type="text" id="name" th:field="*{name}" />
+		  	<label for="title" class="name">Name</label>
+			<input type="text" id="name" th:field="*{name}" class="name"/>
 			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="author">Artist</label>
-			<input type="text" id="artist" th:field="*{artist}" />
+
+		  	<label for="artist">Artist</label>
+			<input type="text" id="artist" th:field="*{artist}"   />
 			<div style="clear: both; display: block; height: 10px;"></div>
+
 		  	<label for="year">Year</label>
 			<input type="number" th:field="*{year}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
+
 			<label for="description">Description</label>
 			<input type="text" th:field="*{description}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
-				<input type="submit" value="Save"></input>
+			
+			<label for="typelist">Type</label>
+			 <select id="typelist" th:field="*{typeid}" class="form-control">
+       			<option th:each="type: ${types}" th:value="${type.typeid}" th:text="${type.name}"></option>
+    		</select>	
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			
+			<input type="submit" value="Save" class="save"></input>
 		</form>
 	</div>
 </body>

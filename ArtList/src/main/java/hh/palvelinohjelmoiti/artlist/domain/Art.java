@@ -9,34 +9,41 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@Entity(name = "art")
 public class Art {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private Long id;
-
 	private String name;
-
+	private String artist;
 	private int year;
-
 	private String description;
 
 	@ManyToOne
-	@JoinColumn(name = "artistid")
+	@JoinColumn(name = "typeid")
 	@JsonIgnoreProperties("arts")
-	private Artist artist;
+	private Type type;
 
 	public Art() {
 		super();
 	}
 
-	public Art(Long id, String name, int year, String description, Artist artist) {
+	public Art(Long id, String name, String artist, int year, String description, Type type) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.year = year;
 		this.description = description;
+		this.artist = artist;
+		this.type = type;
+	}
+
+	public String getArtist() {
+		return artist;
+	}
+
+	public void setArtist(String artist) {
 		this.artist = artist;
 	}
 
@@ -48,12 +55,12 @@ public class Art {
 		this.id = id;
 	}
 
-	public void setArtist(Artist artist) {
-		this.artist = artist;
+	public void setType(Type type) {
+		this.type = type;
 	}
 
-	public Artist getArtist() {
-		return artist;
+	public Type getType() {
+		return type;
 	}
 
 	public String getName() {
@@ -82,11 +89,12 @@ public class Art {
 
 	@Override
 	public String toString() {
-		if (this.artist == null)
-			return "Art [Id=" + id + ", Name=" + name + ", Year=" + year + ", Description=" + description + ", Artist ="
-					+ this.getArtist() + "]";
+		if (this.type == null)
+			return "Art [Id=" + id + ", Name=" + name + ", Artist=" + artist + ", Year=" + year + ", Description="
+					+ description + ", Type =" + this.getType() + "]";
 		else
-			return "Art [Id=" + id + ", Name=" + name + ", Year=" + year + ", Description=" + description + "]";
+			return "Art [Id=" + id + ", Name=" + name + ", Artist=" + artist + ", Year=" + year + ", Description="
+					+ description + "]";
 
 	}
 }

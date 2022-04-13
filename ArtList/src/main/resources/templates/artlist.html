@@ -10,7 +10,7 @@
         font-family: "Lucida Console", "Courier New", monospace;
         text-align: center;
         padding-top: 15%;
-        width: 50%;
+        width: 60%;
         margin: auto;
         padding-right: 20px;
         font-size: xx-large;
@@ -74,14 +74,16 @@
 			<th id="name">Name </th>
 			<th>Artist</th>
 			<th>Year</th>
+			<th>Type</th>
 			<th>Description</th>
 			<td><a href="/add" class="button-47"> Add Art</a></td>
 		</tr>
 		</thead>
 		<tr th:each="art : ${arts}">
 			<td th:text="${art.name}">Name</td>
-			<td th:text="${art.artist.name}">Artist</td>
+			<td th:text="${art.artist}">Artist</td>
 			<td th:text="${art.year}">Year</td>
+			<td th:text="${art.type.name}">Type</td>
 			<td th:text="${art.description}">Description</td>
 			<td><a class="button-47" th:href="@{/delete/{id}(id=${art.id})}">X</a></td> 
 		</tr>

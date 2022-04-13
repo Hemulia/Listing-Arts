@@ -1,15 +1,9 @@
 package hh.palvelinohjelmoiti.artlist.domain;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity(name = "artist")
 public class Artist {
@@ -20,10 +14,6 @@ public class Artist {
 	private Long artistid;
 
 	private String name;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "artist")
-	@JsonIgnoreProperties("artist")
-	private List<Art> books;
 
 	public Artist() {
 		super();
