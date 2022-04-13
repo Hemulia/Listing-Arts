@@ -1,16 +1,18 @@
 package hh.palvelinohjelmoiti.artlist.web;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.palvelinohjelmoiti.artlist.domain.Art;
 import hh.palvelinohjelmoiti.artlist.domain.ArtRepository;
-import hh.palvelinohjelmoiti.artlist.domain.Artist;
 import hh.palvelinohjelmoiti.artlist.domain.TypeRepository;
 
 @Controller
@@ -36,8 +38,8 @@ public class ArtController {
 		return "artform";
 	}
 
-	@RequestMapping(value = "/saveart", method = RequestMethod.POST)
-	public String saveArt(@ModelAttribute Art art, @ModelAttribute Artist artist) {
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String saveArt(Art art) {
 		repository.save(art);
 		return "redirect:../artlist";
 	}
@@ -55,6 +57,16 @@ public class ArtController {
 		model.addAttribute("art", new Art());
 		model.addAttribute("types", trepository.findAll());
 		return "addart";
+	}
+
+	@RequestMapping(value = "/arts", method = RequestMethod.POST)
+	public @ResponseBody Art saveArtRest(@RequestBody Art art) {
+		return repository.save(art);
+	}
+
+	@RequestMapping(value = "/arts/{id}", method = RequestMethod.GET)
+	public @ResponseBody Optional<Art> findArtRest(@PathVariable("id") Long artId) {
+		return repository.findById(artId);
 	}
 
 }

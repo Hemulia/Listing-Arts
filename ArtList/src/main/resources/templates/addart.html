@@ -65,6 +65,13 @@
 	margin-right: 240px;
 	}
 	
+	.form-control {
+	width: 20%;
+	font-size: x-large;
+	float: right;
+	margin-right: 300px;
+	text-align: center;
+	}
     
   </style>
 </head>
@@ -72,6 +79,7 @@
 	<h1>Add Art</h1>
 	<div>
 		<form th:object="${art}" th:action="@{save}" action="#" method="post">
+		
 		  	<label for="title" class="name">Name</label>
 			<input type="text" id="name" th:field="*{name}" class="name"/>
 			<div style="clear: both; display: block; height: 10px;"></div>
@@ -89,7 +97,7 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
 			<label for="typelist">Type</label>
-			 <select id="typelist" th:field="*{typeid}" class="form-control">
+			 <select id="typelist" th:field="*{type}" class="form-control">
        			<option th:each="type: ${types}" th:value="${type.typeid}" th:text="${type.name}"></option>
     		</select>	
 			<div style="clear: both; display: block; height: 10px;"></div>
