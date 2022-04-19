@@ -9,11 +9,11 @@
     body {
         font-family: "Lucida Console", "Courier New", monospace;
         text-align: center;
-        padding-top: 15%;
-        width: 50%;
+        padding-top: 10%;
+        width: 45%;
         margin: auto;
         padding-right: 20px;
-        font-size: xx-large;
+        font-size: large;
         background-image: url('img/brickwall.png');
         background-size: 100%;
     }
@@ -21,8 +21,8 @@
     h1 {
 	    font-family: "Cursive", Brush Script MT;
 	    text-align:center;
-	    margin-bottom:150px;
-	    font-size:200px;
+	    margin-bottom:85px;
+	    font-size:150px;
 	    color:white;
 	    text-shadow:  0 0 7px rgba(255, 170, 0),
 				      0 0 10px rgba(255, 170, 0),
@@ -34,50 +34,72 @@
 				      0 0 151px rgba(255, 245, 130);
     }
     
+     .back {
+	    font-family: "Cursive", Brush Script MT;
+	    text-align:center;
+	    margin-bottom:10px;
+	    font-size:35px;
+	    color:white;
+	    margin-left:400px;
+	    text-shadow:  0 0 7px rgba(237, 3, 22),
+				      0 0 10px rgba(237, 3, 22),
+				      0 0 19px rgba(237, 3, 22),
+				      0 0 40px rgba(255, 69, 83),
+				      0 0 82px rgba(255, 69, 83),
+				      0 0 92px rgba(255, 69, 83),
+				      0 0 102px rgba(255, 180, 0),
+				      0 0 151px rgba(255, 280, 0);
+    }
+    
    input {
-		  width: 800px;
+		  width: 50%;
 		  padding: 12px 20px;
 		  margin: 8px 0;
 		  box-sizing: border-box;
 		  float: right;
 		  margin-right: 30px;
+		  display: flex;
+		  height: 35px;
 	}
 	
 	form {
-	background-color: white;
-	  border: solid 25px;
-    border-color:silver;
-    height: 700px;
+		background-color: white;
+		border: solid 10px;
+	    border-color:silver;
+	    height: 450px;
+	    margin-bottom: 150px;
 	}
 	
 	label {
-	float:left;
-	margin-left: 30px;
+		float:left;
+		margin-left: 30px;
 	}
 	
 	.name {
-	margin-top: 60px;
+		margin-top: 30px;
 	}
 	
 	.save {
-	margin-top: 30px;
-	width:400px;
-	margin-right: 240px;
+		margin-top: 10px;
+		width:100px;
+		float: right;
+		height: 55px;
 	}
 	
 	.form-control {
-	width: 20%;
-	font-size: x-large;
-	float: right;
-	margin-right: 300px;
-	text-align: center;
+		width: 20%;
+		font-size: large;
+		float: right;
+		margin-right: 30px;
+		text-align: center;
 	}
-    
+	
   </style>
 </head>
 <body>
 	<h1>Add Art</h1>
-	<div>
+	<div class="frame">
+	<span class="button"><a href="/artlist" class="back">Back</a></span>
 		<form th:object="${art}" th:action="@{save}" action="#" method="post">
 		
 		  	<label for="title" class="name">Name</label>

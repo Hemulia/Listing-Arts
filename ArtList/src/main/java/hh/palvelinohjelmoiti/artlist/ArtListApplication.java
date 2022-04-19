@@ -11,6 +11,8 @@ import hh.palvelinohjelmoiti.artlist.domain.Art;
 import hh.palvelinohjelmoiti.artlist.domain.ArtRepository;
 import hh.palvelinohjelmoiti.artlist.domain.Type;
 import hh.palvelinohjelmoiti.artlist.domain.TypeRepository;
+import hh.palvelinohjelmoiti.artlist.domain.User;
+import hh.palvelinohjelmoiti.artlist.domain.UserRepository;
 
 @SpringBootApplication
 public class ArtListApplication {
@@ -22,7 +24,7 @@ public class ArtListApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(ArtRepository repository, TypeRepository trepository) {
+	public CommandLineRunner demo(ArtRepository repository, TypeRepository trepository, UserRepository rerepository) {
 		return (args) -> {
 
 			Type r1 = new Type("Patsas");
@@ -53,6 +55,12 @@ public class ArtListApplication {
 			repository.save(a3);
 			repository.save(a4);
 			repository.save(a5);
+
+			User user1 = new User("user", "$2a$10$6rboTwIjPPKUjkqONZgS1u6kHVtzNPpYYk5kFzJb.EMbyUfbJ9Tbu", "USER");
+			User user2 = new User("admin", "$2a$10$Acjj5KO/SnKe6bi/p.GDCub3CFPROvzfroUs6fFmz9X4cicnWOz1u", "ADMIN");
+
+			rerepository.save(user1);
+			rerepository.save(user2);
 
 			log.info("fetch all books");
 			for (Art art : repository.findAll()) {

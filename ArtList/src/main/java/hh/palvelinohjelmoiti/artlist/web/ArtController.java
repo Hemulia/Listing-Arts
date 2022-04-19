@@ -41,7 +41,7 @@ public class ArtController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveArt(Art art) {
 		repository.save(art);
-		return "redirect:../artlist";
+		return "redirect:/artlist";
 	}
 
 	// Poisto
