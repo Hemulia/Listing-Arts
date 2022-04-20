@@ -1,8 +1,10 @@
 package hh.palvelinohjelmoiti.artlist.web;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +34,11 @@ public class ArtController {
 
 	}
 
+	@RequestMapping(value = "artss", method = RequestMethod.GET)
+	public @ResponseBody List<Art> artListaRest() {
+		return (List<Art>) repository.findAll();
+	}
+
 	@RequestMapping(value = "/newart", method = RequestMethod.GET)
 	public String getNewArt(Model model) {
 		model.addAttribute("art", new Art());
@@ -44,13 +51,7 @@ public class ArtController {
 		return "redirect:/artlist";
 	}
 
-	// Poisto
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public String deleteArt(@PathVariable("id") Long artId, Model model) {
-		repository.deleteById(artId);
-		return "redirect:../artlist";
-	}
-
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = { "/add" })
 	public String addArt(Model model) {
 
@@ -67,6 +68,13 @@ public class ArtController {
 	@RequestMapping(value = "/arts/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Art> findArtRest(@PathVariable("id") Long artId) {
 		return repository.findById(artId);
+	}
+
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String deleteArt(@PathVariable("id") Long artId, Model model) {
+		repository.deleteById(artId);
+		return "redirect:../artlist";
 	}
 
 }
